@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAO Labs. Electrónica</title>
+    <link rel="icon" href="UAO-logo_64x51.png" type="image/x-icon">
+    <link rel="stylesheet" href="/index.css">
+    
+</head>
+
+<body>
+    <audio controls autoplay>
+        <source src="/Xavi - La Diabla.mp3" type="audio/mpeg">
+        Tu navegador no soporta la reproducción de audio <code>audio</code>.
+    </audio>
+
+    <div class="container">
+
+        <!-- Formulario de inicio de sesión -->
+        <div id="loginForm">
+            <h2>Inicio de sección</h2>
+            <input class="controlsLogin" type="text" id="username" name="usuario" value="" placeholder="Usuario">
+            <input class="controlsLogin" type="password" id="password" name="contrasena" value=""
+                placeholder="Contraseña">
+            <button class="buttonsLogin" onclick="login()">Ingresar</button>
+            <!-- Botón para enviar los datos de inicio de sesión -->
+            <div class="version">Ver. 1.0 © 2024</div>
+            <!-- Mensaje de error -->
+            <div id="errorMessage" class="error" style="display: none;"></div>
+            <!-- Controles -->
+        </div>
+        <div id="controls" style="display: none;">
+            <h2>Control Automático Lab. Electrónica</h2>
+            <div class="controls">
+
+                <!-- Botones para alternar entre modos -->
+                <button onclick="showAutomatic()">Automático</button>
+                <button onclick="showManual()">Manual</button>
+                <button onclick="showConfig()">Configuración</button>
+
+            </div>
+            <!-- Controles manuales -->
+            <div id="manualControls" style="display: none;">
+
+                <div class="control">
+                    <label class="control-label">Circuito 1 (Relé 1) </label>
+                    <!-- Interruptor para controlar el relé -->
+                    <label class="switch">
+                        <input type="checkbox" id="rele1">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="control">
+                    <label class="control-label">Circuito 2 (Relé 2) </label>
+                    <!-- Interruptor para controlar el relé -->
+                    <label class="switch">
+                        <input type="checkbox" id="rele2">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="control">
+                    <label class="control-label">Circuito 3 (Relé 3) </label>
+                    <!-- Interruptor para controlar el relé -->
+                    <label class="switch">
+                        <input type="checkbox" id="rele3">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="control">
+                    <label class="control-label">Circuito 4 (Relé 4) </label>
+                    <!-- Interruptor para controlar el relé -->
+                    <label class="switch">
+                        <input type="checkbox" id="rele4">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="control">
+                    <label class="control-label">Circuito 5 (Relé 5) </label>
+                    <!-- Interruptor para controlar el relé -->
+                    <label class="switch">
+                        <input type="checkbox" id="rele5">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="control">
+                    <label class="control-label">Circuito 6 (Relé 6) </label>
+                    <!-- Interruptor para controlar el relé -->
+                    <label class="switch">
+                        <input type="checkbox" id="rele6">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="control">
+                    <label class="control-label">Circuito 7 (Relé 7) </label>
+                    <!-- Interruptor para controlar el relé -->
+                    <label class="switch">
+                        <input type="checkbox" id="rele7">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <!-- Repite para Relé 2 hasta Relé 8 -->
+                <div class="btn-container">
+                    <!-- Botones para activar y desactivar todos los relés -->
+                    <button onclick="deactivateAll()">Ninguno</button>
+                    <button onclick="activateAll()">Todos</button>
+                    <!-- Botón "Enviar al ESP8266" -->
+                    <button onclick="manualToESP()">Enviar</button>
+                </div>
+            </div>
+            <!-- Controles automáticos -->
+            <div id="automaticControls" style="display: none;">
+                <!-- Tabla para programar los relés -->
+                <table>
+                    <!-- Encabezado de la tabla -->
+                    <tr>
+                        <td><b></b></td>
+                        <td><b>Hora inicial</b></td>
+                        <td><b>Hora final</b></td>
+                        <td><b>Alarma</b></td>
+                        <td><b>Activo</b></td>
+                    </tr>
+                    <!-- Fila para configurar un día -->
+                    <tr>
+                        <td><b>Lunes</b></td>
+                        <!-- Controles de hora y minutos para el encendido y apagado -->
+                        <td><input type="time" id="lunesInicio"></td>
+                        <td><input type="time" id="lunesFin"></td>
+                        <!-- Control de activación del relé -->
+                        <td><input type="checkbox" id="lunesAlarma"></td>
+                        <!-- Control de alarma -->
+                        <td><input type="checkbox" id="lunesActivo"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Martes</b></td>
+                        <!-- Controles de hora y minutos para el encendido y apagado -->
+                        <td><input type="time" id="martesInicio"></td>
+                        <td><input type="time" id="martesFin"></td>
+                        <!-- Control de activación del relé -->
+                        <td><input type="checkbox" id="martesAlarma"></td>
+                        <!-- Control de alarma -->
+                        <td><input type="checkbox" id="martesActivo"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Miércoles</b></td>
+                        <!-- Controles de hora y minutos para el encendido y apagado -->
+                        <td><input type="time" id="miercolesInicio"></td>
+                        <td><input type="time" id="miercolesFin"></td>
+                        <!-- Control de activación del relé -->
+                        <td><input type="checkbox" id="miercolesAlarma"></td>
+                        <!-- Control de alarma -->
+                        <td><input type="checkbox" id="miercolesActivo"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Jueves</b></td>
+                        <!-- Controles de hora y minutos para el encendido y apagado -->
+                        <td><input type="time" id="juevesInicio"></td>
+                        <td><input type="time" id="juevesFin"></td>
+                        <!-- Control de activación del relé -->
+                        <td><input type="checkbox" id="juevesAlarma"></td>
+                        <!-- Control de alarma -->
+                        <td><input type="checkbox" id="juevesActivo"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Viernes</b></td>
+                        <!-- Controles de hora y minutos para el encendido y apagado -->
+                        <td><input type="time" id="viernesInicio"></td>
+                        <td><input type="time" id="viernesFin"></td>
+                        <!-- Control de activación del relé -->
+                        <td><input type="checkbox" id="viernesAlarma"></td>
+                        <!-- Control de alarma -->
+                        <td><input type="checkbox" id="viernesActivo"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Sábados</b></td>
+                        <!-- Controles de hora y minutos para el encendido y apagado -->
+                        <td><input type="time" id="sabadosInicio"></td>
+                        <td><input type="time" id="sabadosFin"></td>
+                        <!-- Control de activación del relé -->
+                        <td><input type="checkbox" id="sabadosAlarma"></td>
+                        <!-- Control de alarma -->
+                        <td><input type="checkbox" id="sabadosActivo"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Domingos</b></td>
+                        <!-- Controles de hora y minutos para el encendido y apagado -->
+                        <td><input type="time" id="domingosInicio"></td>
+                        <td><input type="time" id="domingosFin"></td>
+                        <!-- Control de activación del relé -->
+                        <td><input type="checkbox" id="domingosAlarma"></td>
+                        <!-- Control de alarma -->
+                        <td><input type="checkbox" id="domingosActivo"></td>
+                    </tr>
+                </table>
+                <!-- Botón "Enviar al ESP8266" -->
+                <button class="sendButton" onclick="automaticoToESP()">Enviar</button>
+            </div>
+            <div id="configMenu" style="display: none;">
+                <h3>Correos para notificaciones</h3>
+                <table>
+                    <!-- Encabezado de la tabla -->
+                    <tr>
+                        <td>Correo usuario 1: <input type="email" id="email1" placeholder="correo@uao.edu.co"></td>
+                    </tr>
+                    <!-- Fila para configurar un día -->
+                    <tr>
+                        <td>Correo usuario 2: <input type="email" id="email2" placeholder="correo@uao.edu.co"></td>
+                    </tr>
+                    <tr>
+                        <td>Correo usuario 3: <input type="email" id="email3" placeholder="correo@uao.edu.co"></td>
+                    </tr>
+                </table>
+                <div>
+                    <!-- Botón para guardar los correos electrónicos -->
+                    <button class="saveMailButton" onclick="saveMailToESP()">Guardar correos</button>
+                </div>
+                <div>
+                    <h3>Cambio de contraseña</h3>
+                    <!-- Cambiar usuario y contraseña -->
+                    <input type="password" placeholder="Contraseña actual">
+                    <input type="password" placeholder="Contraseña nueva">
+                    <button class="saveUserPassButton" onclick="saveUserPassToESP()">Guardar cambio</button>
+                </div>
+                <div>
+                    <table>
+                        <h3>Configuración de alarmas</h3>
+                        <!-- Configurar 3 tiempos diferentes para una alarma -->
+
+                        <!-- Encabezado de la tabla -->
+                        <tr>
+                            <td><b>Alarma 1 <input type="checkbox" id="alarmaActiva1"
+                                        onchange="toggleDropdown('alarmaActiva1', 'horaAlarma1')"></b></td>
+                            <td><b>Alarma 2 <input type="checkbox" id="alarmaActiva2"
+                                        onchange="toggleDropdown('alarmaActiva2', 'horaAlarma2')" disabled></b></td>
+                            <td><b>Alarma 3 <input type="checkbox" id="alarmaActiva3"
+                                        onchange="toggleDropdown('alarmaActiva3', 'horaAlarma3')" disabled></b></td>
+
+                        </tr>
+                        <td>
+                            <!-- Menú desplegable para la alarma 1 -->
+                            <select id="horaAlarma1" disabled>
+                                <option value="5">5 minutos</option>
+                                <option value="10">10 minutos</option>
+                                <option value="15">15 minutos</option>
+                            </select>
+                        </td>
+                        <td>
+                            <!-- Menú desplegable para la alarma 2 -->
+                            <select id="horaAlarma2" disabled>
+                                <option value="5">5 minutos</option>
+                                <option value="10">10 minutos</option>
+                            </select>
+                        </td>
+                        <td>
+                            <!-- Menú desplegable para la alarma 3 -->
+                            <select id="horaAlarma3" disabled>
+                                <option value="5">5 minutos</option>
+                            </select>
+                        </td>
+                    </table>
+                    <h4>"Tenga en cuenta que la alarma correspondiente sonará los minutos seleccionados antes de la hora de cierre seleccionada del día"</h4>
+                    <button class="saveAlarmaButton" onclick="saveAlarmaToESP()">Guardar alarmas</button>
+                </div>
+            </div>
+        </div>
+        <div class="current-time" id="currentTime"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/index.js"></script>
+    
+</body>
+</html>

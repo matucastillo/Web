@@ -1,0 +1,225 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url(bg.png);
+}
+
+audio {
+    margin: 20px auto; /* Margen vertical de 20px y centrado horizontal */
+    display: block;
+}
+.container {
+    width: 600px;
+    /* Utilizando un 90% del ancho disponible */
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    margin-top: 90px;
+    box-shadow: 7px 13px 37px #000;
+    padding: 20px 30px;
+    border-top: 4px solid #017bab;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+.controlsLogin {
+    width: 100%;
+    border: 1px solid #000000;
+    margin-bottom: 15px;
+    padding: 11px 10px;
+    background: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.version {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 14px;
+    color: #888888;
+}
+
+input[type="text"],
+input[type="password"],
+button,
+input[type="number"] {
+    width: calc(70% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+}
+
+.controls button {
+    margin: 45px;
+}
+
+#loginForm button {
+    width: 250px;
+    margin: 0;
+}
+
+.control {
+    margin-bottom: 20px;
+}
+
+.control:first-child {
+    margin-top: 20px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #007bff;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #007bff;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.btn-container button {
+    flex: 1;
+    margin: 0 5px;
+}
+
+.week-days td:first-child {
+    text-align: left;
+}
+
+.week-days {
+    margin-top: 20px;
+}
+
+.sendButton {
+    display: block;
+    width: 150px;
+    margin: 60px auto 0;
+}
+
+.saveMailButton {
+    display: block;
+    width: 150px;
+    margin: 60px auto 0;
+}
+
+.saveUserPassButton {
+    display: block;
+    width: 150px;
+    margin: 60px auto 0;
+}
+
+.saveAlarmaButton {
+    display: block;
+    width: 150px;
+    margin: 60px auto 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 30px;
+}
+
+table,
+th,
+td {
+    border: 1px solid white;
+    padding: 8px;
+    text-align: center;
+}
+
+input[type="checkbox"] {
+    width: 22.5px;
+    height: 22.5px;
+}
+
+input[type="number"] {
+    font-size: 16px;
+    text-align: center;
+}
+
+td {
+    vertical-align: middle;
+}
+
+.current-time {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+@media only screen and (max-width: 600px) {
+
+    input[type="text"],
+    input[type="password"],
+    button,
+    input[type="number"] {
+        width: 100%;
+    }
+}
